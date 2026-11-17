@@ -1,0 +1,26 @@
+# Build
+target/
+*.class
+
+# Test output: reports mein device ke screenshots (app ka internal data) hote hain, kabhi commit nahi
+reports/
+logs/
+test-output/
+allure-results/
+
+# Apps (binaries) aur local settings/secrets
+apps/*
+!apps/README.md
+config/local.properties
+.env
+*.keystore
+*.p12
+*.mobileprovision
+
+# IDE / OS
+.idea/
+*.iml
+.vscode/*
+!.vscode/tasks.json
+.DS_Store
+Thumbs.db
