@@ -23,8 +23,7 @@ public final class WaitUtils {
   }
 
   public static WebElement clickable(AppiumDriver driver, By locator) {
-    return new WebDriverWait(
-            driver, Duration.ofSeconds(Config.getInt("explicit.wait.seconds", 20)))
+    return new WebDriverWait(driver, Duration.ofSeconds(Config.getInt("explicit.wait.seconds", 20)))
         .until(ExpectedConditions.elementToBeClickable(locator));
   }
 

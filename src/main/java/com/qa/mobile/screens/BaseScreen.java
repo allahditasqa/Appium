@@ -12,8 +12,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
 /**
- * Screen Object Model, the mobile version of the Page Object Model: one class per screen. Locators and actions live in
- * screens, never in tests. Android and iOS locators sit in the same class, chosen by {@link #by(By, By)}.
+ * Screen Object Model, the mobile version of the Page Object Model: one class per screen. Locators
+ * and actions live in screens, never in tests. Android and iOS locators sit in the same class,
+ * chosen by {@link #by(By, By)}.
  */
 public abstract class BaseScreen {
   protected final AppiumDriver driver = DriverManager.get();

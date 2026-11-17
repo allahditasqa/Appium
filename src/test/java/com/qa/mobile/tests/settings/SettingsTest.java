@@ -10,8 +10,8 @@ import io.appium.java_client.appmanagement.ApplicationState;
 import org.testng.annotations.Test;
 
 /**
- * SAMPLE tests for the Settings app of the phone (the default {@code app.id}). For your own app, create your own module,
- * for example {@code tests/login/LoginTest.java}, with its own screens.
+ * SAMPLE tests for the Settings app of the phone (the default {@code app.id}). For your own app,
+ * create your own module, for example {@code tests/login/LoginTest.java}, with its own screens.
  */
 public class SettingsTest extends BaseTest {
 

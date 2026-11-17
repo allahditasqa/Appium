@@ -5,11 +5,12 @@ import io.appium.java_client.AppiumBy;
 import org.openqa.selenium.By;
 
 /**
- * SAMPLE screen: the Settings app of the phone. Every Android and iOS device has it, so the framework can be verified
- * without any apk or ipa. For your own app, create screens like this one.
+ * SAMPLE screen: the Settings app of the phone. Every Android and iOS device has it, so the
+ * framework can be verified without any apk or ipa. For your own app, create screens like this one.
  */
 public class SettingsScreen extends BaseScreen {
-  // Android: the search button has a content description that starts with "Search" (it differs a little per vendor).
+  // Android: the search button has a content description that starts with "Search" (it differs a
+  // little per vendor).
   // iOS: the search field of the Settings app.
   private final By searchButton =
       by(

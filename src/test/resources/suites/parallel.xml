@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <!--
-  Parallel: ek saath kai devices (har <test> = ek device). EXAMPLE: apni udid (adb devices) likho.
-  Har device ko alag systemPort (Android) / wdaPort (iOS) dena zaroori hai, warna sessions takrate hain.
+  Parallel run on several devices at once (every <test> is one device). EXAMPLE: put your own udids here (see `adb devices`).
+  Every device needs its own systemPort (Android) and wdaPort (iOS), otherwise the sessions collide.
   mvn test -Dplatform=android -Dsuite=suites/parallel.xml
 -->
 <suite name="Parallel devices" parallel="tests" thread-count="2" verbose="1">
   <listeners>
-    <listener class-name="com.itzflow.mobile.listeners.ReportListener"/>
-    <listener class-name="com.itzflow.mobile.listeners.RetryTransformer"/>
+    <listener class-name="com.qa.mobile.listeners.ReportListener"/>
+    <listener class-name="com.qa.mobile.listeners.RetryTransformer"/>
   </listeners>
 
   <test name="Device 1">
@@ -17,7 +17,7 @@
     <parameter name="systemPort" value="8200"/>
     <parameter name="wdaPort" value="8100"/>
     <groups><run><include name="smoke"/></run></groups>
-    <packages><package name="com.itzflow.mobile.tests.*"/></packages>
+    <packages><package name="com.qa.mobile.tests.*"/></packages>
   </test>
 
   <test name="Device 2">
@@ -26,6 +26,6 @@
     <parameter name="systemPort" value="8201"/>
     <parameter name="wdaPort" value="8101"/>
     <groups><run><include name="smoke"/></run></groups>
-    <packages><package name="com.itzflow.mobile.tests.*"/></packages>
+    <packages><package name="com.qa.mobile.tests.*"/></packages>
   </test>
 </suite>

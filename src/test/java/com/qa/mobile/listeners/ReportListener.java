@@ -16,8 +16,9 @@ import org.testng.ITestListener;
 import org.testng.ITestResult;
 
 /**
- * Collects the outcome, the screenshot and the error of every test, and writes the module-wise HTML reports when the
- * suite finishes. The screenshot is taken after the test and before the session is closed.
+ * Collects the outcome, the screenshot and the error of every test, and writes the module-wise HTML
+ * reports when the suite finishes. The screenshot is taken after the test and before the session is
+ * closed.
  */
 public class ReportListener implements ITestListener, ISuiteListener {
   private static final Logger LOG = LogManager.getLogger(ReportListener.class);
@@ -69,7 +70,10 @@ public class ReportListener implements ITestListener, ISuiteListener {
     LOG.info("{} - {}", status.toUpperCase(), title);
   }
 
-  /** The module is the package below "tests": com.qa.mobile.tests.settings.SettingsTest gives "settings". */
+  /**
+   * The module is the package below "tests": com.qa.mobile.tests.settings.SettingsTest gives
+   * "settings".
+   */
   private static String module(ITestResult result) {
     String pkg = result.getTestClass().getRealClass().getPackageName();
     int index = pkg.indexOf(".tests.");

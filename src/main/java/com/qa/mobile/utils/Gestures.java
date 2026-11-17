@@ -11,7 +11,10 @@ import org.openqa.selenium.interactions.Sequence;
 
 /** Touch gestures built with W3C Actions, so they behave the same on Android and iOS. */
 public final class Gestures {
-  /** Direction of the finger (UP = the finger moves from the bottom to the top, so the content scrolls up). */
+  /**
+   * Direction of the finger (UP = the finger moves from the bottom to the top, so the content
+   * scrolls up).
+   */
   public enum Direction {
     UP,
     DOWN,
@@ -23,7 +26,10 @@ public final class Gestures {
 
   private Gestures() {}
 
-  /** Swipes from the centre of the screen. {@code percent} is the part of the screen to cross (0.1 to 0.9). */
+  /**
+   * Swipes from the centre of the screen. {@code percent} is the part of the screen to cross (0.1
+   * to 0.9).
+   */
   public static void swipe(AppiumDriver driver, Direction direction, double percent) {
     Dimension size = driver.manage().window().getSize();
     int centerX = size.width / 2;

@@ -1,4 +1,4 @@
-package com.itzflow.mobile.config;
+package com.qa.mobile.config;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,9 +11,10 @@ import java.util.Map;
 import java.util.Properties;
 
 /**
- * All settings in one place. Override order (the first one wins): per-thread override (TestNG parameter) →
- * {@code -Dkey=value} → environment variable ({@code device.name} becomes {@code DEVICE_NAME}) →
- * {@code config/local.properties} → {@code config/<platform>.properties} → {@code config/default.properties}.
+ * All settings in one place. Override order (the first one wins): per-thread override (TestNG
+ * parameter) → {@code -Dkey=value} → environment variable ({@code device.name} becomes {@code
+ * DEVICE_NAME}) → {@code config/local.properties} → {@code config/<platform>.properties} → {@code
+ * config/default.properties}.
  */
 public final class Config {
   private static final Properties BASE = new Properties();
@@ -72,7 +73,10 @@ public final class Config {
     return MobilePlatform.from(get("platform"));
   }
 
-  /** Overrides values for the current thread only (parallel runs give every device its own udid and port). */
+  /**
+   * Overrides values for the current thread only (parallel runs give every device its own udid and
+   * port).
+   */
   public static void override(Map<String, String> values) {
     OVERRIDES.get().putAll(values);
   }

@@ -4,22 +4,23 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.itzflow</groupId>
-  <artifactId>itzflow-appium</artifactId>
+  <groupId>com.qa</groupId>
+  <artifactId>mobile-automation-framework</artifactId>
   <version>1.0.0</version>
-  <name>ITZ Flow Mobile Automation (Appium + Java + TestNG)</name>
-  <description>Android and iOS mobile app test automation framework: Appium 2/3, Java client, TestNG, Screen Object Model</description>
+  <name>Mobile Automation Framework (Appium + Java + TestNG)</name>
+  <description>Android and iOS test automation framework: Appium 2/3, Java client, TestNG, Screen Object Model</description>
 
   <properties>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
     <appium.java.client.version>11.0.0</appium.java.client.version>
+    <selenium.version>4.52.0</selenium.version> <!-- same version the Appium Java client uses -->
     <testng.version>7.12.0</testng.version>
     <log4j.version>2.24.3</log4j.version>
     <assertj.version>3.27.3</assertj.version>
 
-    <!-- Run options (command line se badal sakte hain): mvn test -Dplatform=ios -Dsuite=suites/regression.xml -->
+    <!-- Run options, changeable on the command line: mvn test -Dplatform=ios -Dsuite=suites/regression.xml -->
     <platform>android</platform>
     <suite>suites/smoke.xml</suite>
   </properties>
@@ -29,6 +30,12 @@
       <groupId>io.appium</groupId>
       <artifactId>java-client</artifactId>
       <version>${appium.java.client.version}</version>
+    </dependency>
+    <!-- WebDriverWait and ExpectedConditions live here; the Appium Java client no longer brings it -->
+    <dependency>
+      <groupId>org.seleniumhq.selenium</groupId>
+      <artifactId>selenium-support</artifactId>
+      <version>${selenium.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
@@ -62,7 +69,7 @@
         <version>3.13.0</version>
       </plugin>
 
-      <!-- Tests: suite XML (TestNG) aur platform command line se -->
+      <!-- Tests run from a TestNG suite file; the platform comes from the command line -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -78,7 +85,7 @@
         </configuration>
       </plugin>
 
-      <!-- Code format (Google Java Format): mvn spotless:apply  |  check: mvn spotless:check -->
+      <!-- Code format (Google Java Format). Fix: mvn spotless:apply   Check: mvn spotless:check -->
       <plugin>
         <groupId>com.diffplug.spotless</groupId>
         <artifactId>spotless-maven-plugin</artifactId>

@@ -1,6 +1,6 @@
-package com.itzflow.mobile.driver;
+package com.qa.mobile.driver;
 
-import com.itzflow.mobile.config.Config;
+import com.qa.mobile.config.Config;
 import io.appium.java_client.service.local.AppiumDriverLocalService;
 import io.appium.java_client.service.local.AppiumServiceBuilder;
 import io.appium.java_client.service.local.flags.GeneralServerFlag;
@@ -19,8 +19,10 @@ import org.apache.logging.log4j.Logger;
  * Provides the URL of the Appium server.
  *
  * <ul>
- *   <li>mode {@code local}: use the server that is already running, otherwise start one (stopped when the JVM exits)
- *   <li>mode {@code remote} or {@code cloud}: use {@code appium.server.url} (your own server or a cloud grid)
+ *   <li>mode {@code local}: use the server that is already running, otherwise start one (stopped
+ *       when the JVM exits)
+ *   <li>mode {@code remote} or {@code cloud}: use {@code appium.server.url} (your own server or a
+ *       cloud grid)
  * </ul>
  */
 public final class AppiumServerManager {

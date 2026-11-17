@@ -1,6 +1,6 @@
-package com.itzflow.mobile.driver;
+package com.qa.mobile.driver;
 
-import com.itzflow.mobile.config.Config;
+import com.qa.mobile.config.Config;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.ios.options.XCUITestOptions;
 import java.nio.file.Path;
@@ -10,7 +10,10 @@ import java.util.Map;
 import java.util.function.Consumer;
 import org.openqa.selenium.MutableCapabilities;
 
-/** Builds the Appium capabilities from the configuration (Android UiAutomator2, iOS XCUITest, cloud extras). */
+/**
+ * Builds the Appium capabilities from the configuration (Android UiAutomator2, iOS XCUITest, cloud
+ * extras).
+ */
 public final class CapabilitiesFactory {
   private CapabilitiesFactory() {}
 
@@ -27,7 +30,8 @@ public final class CapabilitiesFactory {
 
     String appPath = Config.get("app.path");
     if (!appPath.isBlank()) {
-      options.setApp(Path.of(appPath).toAbsolutePath().toString()); // the apk is installed and started
+      options.setApp(
+          Path.of(appPath).toAbsolutePath().toString()); // the apk is installed and started
     } else {
       options.setAppPackage(Config.get("app.id")); // an app that is already installed on the device
       ifPresent(Config.get("app.activity"), options::setAppActivity);
@@ -49,8 +53,10 @@ public final class CapabilitiesFactory {
             .setNoReset(Config.getBool("no.reset"));
     ifPresent(Config.get("platform.version"), options::setPlatformVersion);
     ifPresent(Config.get("udid"), options::setUdid);
-    ifPresent(Config.get("xcode.org.id"), options::setXcodeOrgId);
-    ifPresent(Config.get("xcode.signing.id"), options::setXcodeSigningId);
+    // Signing for WebDriverAgent on a real device (set as raw capabilities)
+    ifPresent(Config.get("xcode.org.id"), id -> options.setCapability("appium:xcodeOrgId", id));
+    ifPresent(
+        Config.get("xcode.signing.id"), id -> options.setCapability("appium:xcodeSigningId", id));
 
     String appPath = Config.get("app.path");
     if (!appPath.isBlank()) {
@@ -66,7 +72,9 @@ public final class CapabilitiesFactory {
     return options;
   }
 
-  /** BrowserStack "bstack:options". Credentials come only from the environment, never from a file. */
+  /**
+   * BrowserStack "bstack:options". Credentials come only from the environment, never from a file.
+   */
   private static void applyCloud(MutableCapabilities capabilities) {
     if (!"browserstack".equalsIgnoreCase(Config.get("cloud.provider"))) {
       return;
@@ -83,7 +91,9 @@ public final class CapabilitiesFactory {
     String value = Config.get(key);
     if (value.isBlank()) {
       throw new IllegalStateException(
-          "Missing setting '" + key + "' (set the environment variable "
+          "Missing setting '"
+              + key
+              + "' (set the environment variable "
               + key.toUpperCase().replace('.', '_')
               + ")");
     }

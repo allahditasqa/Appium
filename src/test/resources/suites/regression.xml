@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<!-- Regression: group "regression" (saare test cases). mvn test -Dplatform=android -Dsuite=suites/regression.xml -->
+<!-- Regression: every test case (group "regression").  mvn test -Dplatform=android -Dsuite=suites/regression.xml -->
 <suite name="Regression" verbose="1">
   <listeners>
-    <listener class-name="com.itzflow.mobile.listeners.ReportListener"/>
-    <listener class-name="com.itzflow.mobile.listeners.RetryTransformer"/>
+    <listener class-name="com.qa.mobile.listeners.ReportListener"/>
+    <listener class-name="com.qa.mobile.listeners.RetryTransformer"/>
   </listeners>
   <test name="Regression">
     <groups>
@@ -13,7 +13,7 @@
       </run>
     </groups>
     <packages>
-      <package name="com.itzflow.mobile.tests.*"/>
+      <package name="com.qa.mobile.tests.*"/>
     </packages>
   </test>
 </suite>

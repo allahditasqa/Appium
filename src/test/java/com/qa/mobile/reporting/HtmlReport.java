@@ -15,9 +15,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * One self-contained HTML report per module (screenshots embedded, opens without a server). The file name contains
- * the date and time: {@code reports/<module>/<module> <platform> test DD-MM-YYYY_HH-mm.html}, so an old report is
- * never overwritten.
+ * One self-contained HTML report per module (screenshots embedded, opens without a server). The
+ * file name contains the date and time: {@code reports/<module>/<module> <platform> test
+ * DD-MM-YYYY_HH-mm.html}, so an old report is never overwritten.
  */
 public final class HtmlReport {
 

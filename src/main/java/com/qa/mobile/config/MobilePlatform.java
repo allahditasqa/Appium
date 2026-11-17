@@ -1,4 +1,4 @@
-package com.itzflow.mobile.config;
+package com.qa.mobile.config;
 
 import java.util.Locale;
 

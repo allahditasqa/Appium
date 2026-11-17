@@ -11,8 +11,8 @@ import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 
 /**
- * Starts a session before every test and closes it afterwards. For parallel runs, the TestNG parameters in
- * suites/parallel.xml give every device its own udid and ports.
+ * Starts a session before every test and closes it afterwards. For parallel runs, the TestNG
+ * parameters in suites/parallel.xml give every device its own udid and ports.
  */
 public abstract class BaseTest {
 

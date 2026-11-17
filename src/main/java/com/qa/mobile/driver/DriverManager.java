@@ -1,11 +1,14 @@
-package com.itzflow.mobile.driver;
+package com.qa.mobile.driver;
 
-import com.itzflow.mobile.config.MobilePlatform;
+import com.qa.mobile.config.MobilePlatform;
 import io.appium.java_client.AppiumDriver;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/** Every thread gets its own driver (ThreadLocal), so parallel runs on several devices never interfere. */
+/**
+ * Every thread gets its own driver (ThreadLocal), so parallel runs on several devices never
+ * interfere.
+ */
 public final class DriverManager {
   private static final Logger LOG = LogManager.getLogger(DriverManager.class);
   private static final ThreadLocal<AppiumDriver> DRIVER = new ThreadLocal<>();

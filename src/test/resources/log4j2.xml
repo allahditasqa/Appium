@@ -9,7 +9,7 @@
     </File>
   </Appenders>
   <Loggers>
-    <!-- Selenium/Appium ki bohot zyada baatein kam rakhne ke liye -->
+    <!-- Keep the very chatty Selenium and Appium libraries quiet -->
     <Logger name="org.openqa.selenium" level="warn"/>
     <Logger name="io.appium" level="warn"/>
     <Root level="info">
