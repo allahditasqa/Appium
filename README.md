@@ -155,22 +155,40 @@ public class LoginTest extends BaseTest {
 
 ## Reporting
 
-After a run, one HTML file per module is written to `reports/<module>/`, for example
-`reports/settings/settings android test 17-11-2026_17-30.html`. Each report shows the status, the error and a **screenshot
-for every test**. The date and time are in the file name, so an old report is never overwritten.
-Logs are written to `logs/test.log`.
+Every run writes module-wise reports and a history page. A report name that already exists gets a ` (2)` suffix, so old reports are never overwritten.
+
+```
+reports/
+├── index.html                 # history of runs, newest first, links to every module report and CSV
+├── history.json               # machine readable history (append only)
+└── <module>/                  # session, settings, ...
+    ├── <Module> test <DD-MM-YYYY>_<HH-mm-ss>.html        # status, written steps, error, screenshot per test
+    └── <Module> test cases <DD-MM-YYYY>_<HH-mm-ss>.csv   # 17 columns, same as the Selenium repos
+```
+
+* **How to generate:** `./mvnw test -Dplatform=android` (the `ReportListener` writes everything at the end of the suite). Logs: `logs/test.log`.
+* **Status of committed reports:** none yet. The reporting code was compile-checked and its documents were verified, but a run against a device could not be completed in the environment where this layout was added (the session setup failed with `Unable to establish loopback connection` before any test started), so **no report is committed**. Only reports from real device runs are committed to `reports/`; they may contain screenshots of the device screen, so check them first.
 
 ## Test cases
 
-Documents in the standard format (ID, title, priority, preconditions, steps, expected result):
-[Session](docs/test-cases/session.md) and [Settings (sample app)](docs/test-cases/settings.md).
-Test titles are full English sentences, and the test ID in the title links the code to the document.
+Every automated test has a written test case; documents, master CSV and code share the same ID.
+
+| What | Where |
+| --- | --- |
+| Standard | [`docs/TEST_CASE_STANDARD.md`](docs/TEST_CASE_STANDARD.md) |
+| Strategy | [`docs/TEST_STRATEGY.md`](docs/TEST_STRATEGY.md) |
+| Documents (2 modules, **5 cases**, 5 automated) | [Session](docs/test-cases/session.md), [Settings (sample app)](docs/test-cases/settings.md) |
+| Master CSV per module | `docs/test-cases/*.csv` |
+
+* ID `TC_<MODULE>_<NN>` is the start of the TestNG `description`; the title after it equals the document title.
+* `powershell scripts/Build-CaseCsv.ps1` builds the CSV from the documents (`-Check` only verifies).
+* `./mvnw test -Dsuite=suites/docs.xml` runs `DocsTraceabilityTest` (no device needed) and fails if code and documents differ.
 
 ## CI
 
 [`.github/workflows/ci.yml`](.github/workflows/ci.yml):
 
-1. **Format check and compile** on every push and pull request (`spotless:check test-compile`).
+1. **Format check, compile and document traceability** on every push and pull request (`spotless:check test-compile`, then `test -Dsuite=suites/docs.xml`).
 2. **Android smoke on an emulator**, started manually (`Run workflow`): installs Appium and the UiAutomator2 driver,
    boots an emulator with hardware acceleration, runs the smoke suite and uploads the reports.
 

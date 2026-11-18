@@ -3,6 +3,7 @@ package com.qa.mobile.listeners;
 import com.qa.mobile.config.Config;
 import com.qa.mobile.driver.DriverManager;
 import com.qa.mobile.reporting.HtmlReport;
+import com.qa.mobile.reporting.TestCaseCatalog;
 import com.qa.mobile.utils.ScreenshotUtils;
 import java.nio.file.Path;
 import java.util.List;
@@ -44,7 +45,12 @@ public class ReportListener implements ITestListener, ISuiteListener {
 
   @Override
   public void onFinish(ISuite suite) {
-    List<Path> files = REPORT.write(Path.of(Config.get("reports.dir")), Config.get("platform"));
+    List<Path> files =
+        REPORT.write(
+            Path.of(Config.get("reports.dir")),
+            TestCaseCatalog.load(Path.of("docs", "test-cases")),
+            Config.get("platform"),
+            Config.get("app.id"));
     files.forEach(file -> LOG.info("Report: {}", file.toAbsolutePath()));
   }
 
@@ -66,7 +72,10 @@ public class ReportListener implements ITestListener, ISuiteListener {
             status,
             result.getEndMillis() - result.getStartMillis(),
             error == null ? "" : String.valueOf(error.getMessage()),
-            screenshot));
+            screenshot,
+            result.getTestClass().getRealClass().getSimpleName()
+                + "."
+                + result.getMethod().getMethodName()));
     LOG.info("{} - {}", status.toUpperCase(), title);
   }
 

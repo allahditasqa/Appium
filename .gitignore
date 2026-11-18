@@ -2,8 +2,8 @@
 target/
 *.class
 
-# Test output: reports contain device screenshots, so they are never committed
-reports/
+# Test output (reports/ is committed on purpose: only reports from real device runs, see README)
+
 logs/
 test-output/
 allure-results/

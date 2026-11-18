@@ -17,6 +17,11 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn -B -ntp spotless:check test-compile
+      - name: Test case documents match the automated tests
+        shell: pwsh
+        run: |
+          ./scripts/Build-CaseCsv.ps1 -Check
+          mvn -B -ntp test -Dsuite=suites/docs.xml
 
   android-smoke:
     name: Android smoke on an emulator (manual)
