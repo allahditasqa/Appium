@@ -21,7 +21,7 @@ jobs:
         shell: pwsh
         run: |
           ./scripts/Build-CaseCsv.ps1 -Check
-          mvn -B -ntp test -Dsuite=suites/docs.xml
+          mvn -B -ntp test "-Dsuite=suites/docs.xml"
 
   android-smoke:
     name: Android smoke on an emulator (manual)
