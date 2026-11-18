@@ -35,6 +35,10 @@ public final class CapabilitiesFactory {
     } else {
       options.setAppPackage(Config.get("app.id")); // an app that is already installed on the device
       ifPresent(Config.get("app.activity"), options::setAppActivity);
+      // Every test must start on the app's home screen. With noReset the app keeps the screen the
+      // previous test left, so restart it for each session (its data is NOT cleared).
+      options.setCapability("appium:forceAppLaunch", true);
+      options.setCapability("appium:shouldTerminateApp", true);
     }
     int systemPort = Config.getInt("system.port", 0);
     if (systemPort > 0) {

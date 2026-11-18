@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.qa.mobile.base.BaseTest;
 import com.qa.mobile.config.Config;
 import com.qa.mobile.screens.SettingsScreen;
-import io.appium.java_client.InteractsWithApps;
+import com.qa.mobile.utils.WaitUtils;
 import io.appium.java_client.appmanagement.ApplicationState;
 import org.testng.annotations.Test;
 
@@ -19,7 +19,8 @@ public class SettingsTest extends BaseTest {
       groups = {"smoke", "regression"},
       description = "TC_SETTINGS_01 - Launch the Settings app and check it is in the foreground")
   public void settingsAppIsInForeground() {
-    ApplicationState state = ((InteractsWithApps) driver()).queryAppState(Config.get("app.id"));
+    // The session starts the app asynchronously: wait (up to 10 s) for the foreground state.
+    ApplicationState state = WaitUtils.waitForForeground(driver(), Config.get("app.id"), 10);
 
     assertThat(state).isEqualTo(ApplicationState.RUNNING_IN_FOREGROUND);
   }

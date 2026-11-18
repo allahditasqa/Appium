@@ -60,7 +60,8 @@ src/test/java/.../listeners/         ReportListener (screenshots + HTML), RetryA
 | W3C Actions for gestures | Works on Android and iOS without platform-specific scripts |
 | Retries off by default (`retry.count=0`) | A flaky test must be visible, not hidden |
 | Settings in `.properties` plus overrides | Switching device, app or server needs no code change |
-| Reports and logs are git-ignored | Device screenshots can contain private data |
+| Only reports of real device runs are committed; logs are git-ignored | Device screenshots can contain private data, so they are checked before every commit |
+| Every session restarts the app (`forceAppLaunch` + `shouldTerminateApp`, data is kept) | A test must not start on the screen the previous test left |
 
 ## Project structure
 
@@ -167,7 +168,9 @@ reports/
 ```
 
 * **How to generate:** `./mvnw test -Dplatform=android` (the `ReportListener` writes everything at the end of the suite). Logs: `logs/test.log`.
-* **Status of committed reports:** none yet. The reporting code was compile-checked and its documents were verified, but a run against a device could not be completed in the environment where this layout was added (the session setup failed with `Unable to establish loopback connection` before any test started), so **no report is committed**. Only reports from real device runs are committed to `reports/`; they may contain screenshots of the device screen, so check them first.
+* **Status of committed reports:** three real runs of `suites/regression.xml` on a **Google Pixel 5 (Android 14, UiAutomator2)**, retries off, on 18-11-2026 (16-09-14, 16-10-18, 16-11-51): **5 of 5 passed in each run** (2 Session + 3 Settings cases). Open [`reports/index.html`](reports/index.html) (download or clone, GitHub shows HTML as text).
+* **How the first device runs went (honest note):** the very first runs on this phone failed. `TC_SETTINGS_01` read the app state once, before the app had reached the foreground; `TC_SETTINGS_02` and `TC_SETTINGS_03` failed because the search bar was found by a content description that this Android version does not set, and because `noReset=true` kept the screen the previous test had left. These were test and framework problems, not app defects. They were fixed (wait for the foreground state, locate the search bar by its resource id `search_action_bar`, restart the app for every session) and the three runs above were made with the fixed code. The failed runs are not committed because their screenshots showed the owner's home screen.
+* **Privacy:** reports contain screenshots of the device screen. Check them before you commit new ones.
 
 ## Test cases
 

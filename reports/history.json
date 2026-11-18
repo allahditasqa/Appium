@@ -1,0 +1,86 @@
+[
+  {
+    "RunId": "20261118-160914",
+    "StartedAt": "2026-11-18T16:09:14.9506454",
+    "DurationSeconds": 43.609,
+    "Platform": "android",
+    "Modules": [
+      {
+        "Module": "Session",
+        "ReportPath": "session\u002fSession test 18-11-2026_16-09-14.html",
+        "CsvPath": "session\u002fSession test cases 18-11-2026_16-09-14.csv",
+        "Total": 2,
+        "Passed": 2,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 0.521
+      },
+      {
+        "Module": "Settings",
+        "ReportPath": "settings\u002fSettings test 18-11-2026_16-09-14.html",
+        "CsvPath": "settings\u002fSettings test cases 18-11-2026_16-09-14.csv",
+        "Total": 3,
+        "Passed": 3,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 8.399
+      }
+    ]
+  },
+  {
+    "RunId": "20261118-161018",
+    "StartedAt": "2026-11-18T16:10:18.2448903",
+    "DurationSeconds": 42.963,
+    "Platform": "android",
+    "Modules": [
+      {
+        "Module": "Session",
+        "ReportPath": "session\u002fSession test 18-11-2026_16-10-18.html",
+        "CsvPath": "session\u002fSession test cases 18-11-2026_16-10-18.csv",
+        "Total": 2,
+        "Passed": 2,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 0.534
+      },
+      {
+        "Module": "Settings",
+        "ReportPath": "settings\u002fSettings test 18-11-2026_16-10-18.html",
+        "CsvPath": "settings\u002fSettings test cases 18-11-2026_16-10-18.csv",
+        "Total": 3,
+        "Passed": 3,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 7.79
+      }
+    ]
+  },
+  {
+    "RunId": "20261118-161151",
+    "StartedAt": "2026-11-18T16:11:51.1773721",
+    "DurationSeconds": 42.873,
+    "Platform": "android",
+    "Modules": [
+      {
+        "Module": "Session",
+        "ReportPath": "session\u002fSession test 18-11-2026_16-11-51.html",
+        "CsvPath": "session\u002fSession test cases 18-11-2026_16-11-51.csv",
+        "Total": 2,
+        "Passed": 2,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 0.564
+      },
+      {
+        "Module": "Settings",
+        "ReportPath": "settings\u002fSettings test 18-11-2026_16-11-51.html",
+        "CsvPath": "settings\u002fSettings test cases 18-11-2026_16-11-51.csv",
+        "Total": 3,
+        "Passed": 3,
+        "Failed": 0,
+        "Skipped": 0,
+        "DurationSeconds": 7.832
+      }
+    ]
+  }
+]

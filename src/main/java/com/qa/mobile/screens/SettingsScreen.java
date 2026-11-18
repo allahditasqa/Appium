@@ -9,12 +9,14 @@ import org.openqa.selenium.By;
  * framework can be verified without any apk or ipa. For your own app, create screens like this one.
  */
 public class SettingsScreen extends BaseScreen {
-  // Android: the search button has a content description that starts with "Search" (it differs a
-  // little per vendor).
+  // Android: the search bar has the resource id "search_action_bar" (Pixel, Android 14, verified
+  // on a Pixel 5); some vendors expose a content description that contains "Search" instead.
   // iOS: the search field of the Settings app.
   private final By searchButton =
       by(
-          AppiumBy.androidUIAutomator("new UiSelector().descriptionContains(\"Search\")"),
+          AppiumBy.xpath(
+              "//*[@resource-id='com.android.settings:id/search_action_bar'"
+                  + " or contains(@content-desc,'Search')]"),
           AppiumBy.iOSClassChain("**/XCUIElementTypeSearchField"));
 
   private final By searchInput =
